@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>طلب خدمة - الحاج تكنولوجي</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Cairo,Tahoma,sans-serif;
+}
+body{
+background:#050505;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+.container{
+width:100%;
+max-width:600px;
+background:#101010;
+border:1px solid rgba(0,191,255,.3);
+border-radius:25px;
+padding:35px;
+box-shadow:0 0 30px rgba(0,191,255,.15);
+}
+h1{
+text-align:center;
+color:#00bfff;
+margin-bottom:10px;
+}
+p{
+text-align:center;
+color:#bbb;
+margin-bottom:25px;
+}
+.input-box{
+margin-bottom:15px;
+}
+.input-box label{
+display:block;
+margin-bottom:8px;
+color:white;
+}
+.input-box input,
+.input-box select,
+.input-box textarea{
+width:100%;
+padding:14px;
+background:#181818;
+border:1px solid #333;
+border-radius:12px;
+color:white;
+outline:none;
+}
+.input-box textarea{
+resize:none;
+height:120px;
+}
+button{
+width:100%;
+padding:15px;
+background:#00bfff;
+border:none;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+button:hover{
+transform:translateY(-2px);
+}
+.back{
+display:block;
+text-align:center;
+margin-top:15px;
+color:#00bfff;
+text-decoration:none;
+}
+.success{
+display:none;
+margin-top:15px;
+padding:12px;
+border-radius:10px;
+background:#0f2a0f;
+color:#7fff7f;
+text-align:center;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>الحاج تكنولوجي</h1>
+<p>املأ البيانات التالية وسنقوم بالتواصل معك</p>
+<form id="requestForm">
+<div class="input-box">
+<label>الاسم الكامل</label>
+<input type="text" required>
+</div>
+<div class="input-box">
+<label>رقم الهاتف</label>
+<input type="tel" required>
+</div>
+<div class="input-box">
+<label>البريد الإلكتروني</label>
+<input type="email">
+</div>
+<div class="input-box">
+<label>نوع الخدمة</label>
+<select>
+<option>تصميم موقع</option>
+<option>برمجة تطبيق</option>
+<option>صيانة حاسوب</option>
+<option>أمن سيبراني</option>
+<option>شبكات</option>
+<option>استشارة تقنية</option>
+</select>
+</div>
+<div class="input-box">
+<label>تفاصيل الطلب</label>
+<textarea placeholder="اكتب تفاصيل الخدمة المطلوبة"></textarea>
+</div>
+<button type="submit">
+إرسال الطلب
+</button>
+<div class="success" id="successMsg">
+تم استلام طلبك بنجاح ✔
+</div>
+</form>
+<a href="index.html" class="back">
+العودة للرئيسية
+</a>
+</div>
+<script>
+document.getElementById("requestForm").addEventListener("submit",function(e){
+e.preventDefault();
+document.getElementById("successMsg").style.display="block";
+});
+</script>
+</body>
+</html>
