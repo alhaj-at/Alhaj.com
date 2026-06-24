@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الحاج تكنولوجي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#050505;
+--card:#101010;
+--blue:#00bfff;
+--blue2:#00e5ff;
+--text:#ffffff;
+}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+body{
+font-family:'Cairo',sans-serif;
+background:var(--bg);
+color:white;
+overflow-x:hidden;
+}
+/* خلفية تقنية */
+#particles{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-2;
+}
+.grid{
+position:fixed;
+width:100%;
+height:100%;
+background:
+linear-gradient(rgba(0,191,255,.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,191,255,.05) 1px, transparent 1px);
+background-size:40px 40px;
+z-index:-1;
+}
+/* شاشة التحميل */
+.loader{
+position:fixed;
+inset:0;
+background:#000;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+transition:1s;
+}
+.loader h1{
+font-family:'Orbitron',sans-serif;
+color:var(--blue);
+font-size:40px;
+text-shadow:0 0 30px var(--blue);
+}
+/* Navbar */
+header{
+position:fixed;
+top:0;
+width:100%;
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(15px);
+border-bottom:1px solid rgba(0,191,255,.15);
+z-index:999;
+}
+.logo{
+font-family:'Orbitron',sans-serif;
+font-size:28px;
+font-weight:900;
+color:var(--blue);
+text-shadow:0 0 20px var(--blue);
+}
+nav{
+display:flex;
+gap:25px;
+}
+nav a{
+color:white;
+text-decoration:none;
+transition:.3s;
+}
+nav a:hover{
+color:var(--blue);
+}
+.menu{
+display:none;
+font-size:30px;
+cursor:pointer;
+}
+/* Hero */
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+.hero h1{
+font-family:'Orbitron',sans-serif;
+font-size:80px;
+color:var(--blue);
+text-shadow:0 0 40px var(--blue);
+margin-bottom:20px;
+}
+.hero p{
+max-width:800px;
+margin:auto;
+font-size:22px;
+line-height:2;
+color:#ddd;
+}
+.btns{
+margin-top:35px;
+}
+.btn{
+display:inline-block;
+padding:15px 35px;
+margin:10px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+transition:.4s;
+}
+.primary{
+background:var(--blue);
+color:black;
+box-shadow:0 0 25px var(--blue);
+}
+.primary:hover{
+transform:translateY(-5px);
+}
+.outline{
+border:2px solid var(--blue);
+color:var(--blue);
+}
+.outline:hover{
+background:var(--blue);
+color:black;
+}
+section{
+padding:100px 8%;
+}
+.title{
+text-align:center;
+font-size:42px;
+font-family:'Orbitron',sans-serif;
+color:var(--blue);
+margin-bottom:60px;
+}
+/* الخدمات */
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+.card{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(0,191,255,.12);
+border-radius:25px;
+padding:35px;
+backdrop-filter:blur(10px);
+transition:.4s;
+}
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 30px rgba(0,191,255,.4);
+}
+.card h3{
+margin-bottom:15px;
+color:var(--blue);
+}
+/* الاحصائيات */
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+.stat{
+padding:40px;
+text-align:center;
+background:#0f0f0f;
+border-radius:20px;
+border:1px solid rgba(0,191,255,.15);
+}
+.counter{
+font-size:50px;
+font-weight:900;
+color:var(--blue);
+}
+/* المشاريع */
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+.project{
+height:240px;
+border-radius:25px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+font-weight:bold;
+background:linear-gradient(135deg,#081018,#101010);
+border:1px solid rgba(0,191,255,.15);
+transition:.4s;
+}
+.project:hover{
+box-shadow:0 0 35px rgba(0,191,255,.35);
+transform:scale(1.03);
+}
+/* التواصل */
+.socials{
+text-align:center;
+}
+.socials a{
+display:inline-block;
+margin:10px;
+padding:15px 25px;
+text-decoration:none;
+background:var(--blue);
+color:black;
+border-radius:50px;
+font-weight:bold;
+}
+/* زر الصعود */
+.top{
+position:fixed;
+bottom:20px;
+left:20px;
+width:55px;
+height:55px;
+background:var(--blue);
+border:none;
+border-radius:50%;
+font-size:22px;
+cursor:pointer;
+display:none;
+}
+/* Footer */
+footer{
+padding:30px;
+text-align:center;
+border-top:1px solid rgba(0,191,255,.1);
+color:#aaa;
+}
+.show{
+opacity:1 !important;
+transform:translateY(0) !important;
+}
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+/* موبايل */
+@media(max-width:768px){
+.hero h1{
+font-size:45px;
+}
+.hero p{
+font-size:18px;
+}
+nav{
+display:none;
+}
+.menu{
+display:block;
+}
+.title{
+font-size:30px;
+}
+}
+</style>
+</head>
+<body>
+<div class="loader">
+<h1>ALHAJ TECH</h1>
+</div>
+<div class="grid"></div>
+<header>
+<div class="logo">الحاج تكنولوجي</div>
+<nav>
+<a href="#">الرئيسية</a>
+<a href="#services">الخدمات</a>
+<a href="#stats">الإحصائيات</a>
+<a href="#projects">المشاريع</a>
+<a href="#contact">التواصل</a>
+</nav>
+<div class="menu">☰</div>
+</header>
+<section class="hero">
+<div>
+<h1 id="typing"></h1>
+<p>
+منصة تقنية متكاملة لتطوير المواقع والبرمجيات والأدوات الذكية والحلول الرقمية الحديثة.
+</p>
+<div class="btns">
+<a href="#" class="btn primary">ابدأ الآن</a>
+<a href="#" class="btn outline">تواصل معنا</a>
+</div>
+</div>
+</section>
+<section id="services" class="reveal">
+<h2 class="title">الخدمات</h2>
+<div class="cards">
+<div class="card">
+<h3>تطوير المواقع</h3>
+<p>تصميم مواقع حديثة وسريعة ومتجاوبة.</p>
+</div>
+<div class="card">
+<h3>البرمجة</h3>
+<p>تطوير الأنظمة والتطبيقات الاحترافية.</p>
+</div>
+<div class="card">
+<h3>الأمن السيبراني</h3>
+<p>رفع مستوى الحماية والأمان الرقمي.</p>
+</div>
+<div class="card">
+<h3>الشبكات</h3>
+<p>تصميم وإدارة البنية التحتية للشبكات.</p>
+</div>
+<div class="card">
+<h3>الهواتف الذكية</h3>
+<p>حلول وصيانة الأجهزة والتطبيقات.</p>
+</div>
+<div class="card">
+<h3>الاستشارات</h3>
+<p>حلول تقنية للمؤسسات والأفراد.</p>
+</div>
+</div>
+</section>
+<section id="stats" class="reveal">
+<h2 class="title">إحصائيات</h2>
+<div class="stats">
+<div class="stat">
+<div class="counter" data-target="150">0</div>
+<p>مشروع</p>
+</div>
+<div class="stat">
+<div class="counter" data-target="500">0</div>
+<p>عميل</p>
+</div>
+<div class="stat">
+<div class="counter" data-target="100">0</div>
+<p>شرح</p>
+</div>
+<div class="stat">
+<div class="counter" data-target="20">0</div>
+<p>أداة</p>
+</div>
+</div>
+</section>
+<section id="projects" class="reveal">
+<h2 class="title">معرض الأعمال</h2>
+<div class="projects">
+<div class="project">مشروع 1</div>
+<div class="project">مشروع 2</div>
+<div class="project">مشروع 3</div>
+</div>
+</section>
+<section id="contact" class="reveal">
+<h2 class="title">تواصل معنا</h2>
+<div class="socials">
+
+واتساب
+فيسبوك
+تيليجرام
+إنستغرام
+
+</div>
+</section>
+<footer>
+© 2026 الحاج تكنولوجي - جميع الحقوق محفوظة
+</footer>
+
+↑
+
+<script>
+/* شاشة التحميل */
+window.addEventListener("load",()=>{
+setTimeout(()=>{
+document.querySelector(".loader").style.opacity="0";
+setTimeout(()=>{
+document.querySelector(".loader").style.display="none";
+},1000);
+},1500);
+});
+/* كتابة العنوان */
+const text="الحاج تكنولوجي";
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,120);
+}
+}
+type();
+/* العدادات */
+const counters=document.querySelectorAll(".counter");
+counters.forEach(counter=>{
+const update=()=>{
+const target=+counter.dataset.target;
+const current=+counter.innerText;
+const increment=target/100;
+if(current<target){
+counter.innerText=Math.ceil(current+increment);
+setTimeout(update,20);
+}else{
+counter.innerText=target+"+";
+}
+};
+update();
+});
+/* اظهار العناصر */
+const reveals=document.querySelectorAll(".reveal");
+window.addEventListener("scroll",()=>{
+reveals.forEach(el=>{
+const top=el.getBoundingClientRect().top;
+if(top<window.innerHeight-100){
+el.classList.add("show");
+}
+});
+});
+/* زر العودة */
+const topBtn=document.querySelector(".top");
+window.addEventListener("scroll",()=>{
+if(window.scrollY>500){
+topBtn.style.display="block";
+}else{
+topBtn.style.display="none";
+}
+});
+topBtn.onclick=()=>{
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+};
+/* جسيمات */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let particles=[];
+for(let i=0;i<120;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+dx:(Math.random()-0.5),
+dy:(Math.random()-0.5)
+});
+}
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="#00bfff";
+ctx.fill();
+p.x+=p.dx;
+p.y+=p.dy;
+if(p.x<0||p.x>canvas.width) p.dx*=-1;
+if(p.y<0||p.y>canvas.height) p.dy*=-1;
+});
+requestAnimationFrame(animate);
+}
+animate();
+</script>
+</body>
+</html>
